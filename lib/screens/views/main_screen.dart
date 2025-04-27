@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +12,7 @@ class MainScreen extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
+          
           children: [
           Container(
             color: Colors.white,
@@ -21,17 +24,21 @@ class MainScreen extends StatelessWidget {
                 alignment: Alignment.center,
                 children: [
                   Container(
-                    width: 50,
-                    height: 50,
+                    width: 40,
+                    height: 40,
                    decoration: const BoxDecoration(
                      shape: BoxShape.circle,
-                     color: Colors.blue,
+                      border: Border.fromBorderSide(
+                        BorderSide(
+                          color: Colors.black,
+                          width: 1,
+                        ),
+                      ),
                     ),
                   ),
-                  Icon(CupertinoIcons.person_2_fill)
+                  Icon(CupertinoIcons.person_fill, color: Colors.black,)
                 ],
               ),
-              const SizedBox(width: 8),
               Align(
                 alignment: Alignment.centerLeft,
                 child: const Column(
@@ -56,7 +63,10 @@ class MainScreen extends StatelessWidget {
               ),
               Align(
                 alignment: Alignment.centerRight,
-                child: IconButton(onPressed: () {}, icon: Icon(CupertinoIcons.settings)),
+                child: IconButton(onPressed: () {}, 
+                icon: Icon(CupertinoIcons.bell_fill, 
+                color: Theme.of(context).colorScheme.onSecondary, size: 30,
+                )),
               )
             ],
             ),
@@ -66,28 +76,208 @@ class MainScreen extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.width / 2,
             decoration: BoxDecoration(
-              color: Colors.blue.shade300,
+              gradient: LinearGradient(colors: [
+                Theme.of(context).colorScheme.tertiary,
+                Theme.of(context).colorScheme.secondary,
+                Theme.of(context).colorScheme.primary,
+              ],
+              transform: const GradientRotation(pi / 4),
+              ),
               borderRadius: BorderRadius.circular(26),
-            ),
-            child: Column(
-              children: [
-                const SizedBox(height: 20),
-                const Text(
-                  'Seu saldo',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),
-                const SizedBox(height: 10),
-                const Text(
-                  'R\$ 1.000,00',
-                  style: TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.w600,
-                  ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey,
+                  blurRadius: 5,
+                  offset: const Offset(5, 5),
                 ),
               ],
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Seu saldo", style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
+                ),
+                Text("R 1000", style: TextStyle(
+                  fontSize: 38,
+                  fontWeight: FontWeight.w600,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                      children: [
+                       Container(
+                        width: 25,
+                        height: 25,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
+                        ),
+                       child: const Center(
+                         child: Icon(
+                           CupertinoIcons.arrow_down,
+                           size: 12,
+                           color: Colors.red,
+                         ),
+                       ),
+                      ),
+                      SizedBox(width: 8),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Despesas" , style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),),
+                          Text("R 1000", style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),),
+                          ],
+                          ),
+                        ],
+                      ),
+                    Row(
+                      children: [
+                       Container(
+                        width: 25,
+                        height: 25,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
+                        ),
+                       child: const Center(
+                         child: Icon(
+                           CupertinoIcons.arrow_down,
+                           size: 12,
+                           color: Colors.green,
+                         ),
+                       ),
+                      ),
+                       SizedBox(width: 8),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text("Income" , style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),),
+                          Text("R 850", style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Theme.of(context).colorScheme.onPrimary,
+                          ),),
+                          ],
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+          const SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("Ultimas transações", style: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+                color: Theme.of(context).colorScheme.onSecondary,
+              ),
+              ),
+              GestureDetector(
+                onTap: () => {
+                 
+                },
+                child: Text("Ver todas", style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: Theme.of(context).colorScheme.onSecondary,
+                ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+          Expanded(
+            child: ListView.builder(
+              itemCount: 5,
+              itemBuilder: (context, int i) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 16.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 4.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Stack(
+                                alignment: Alignment.center,
+                                children: [
+                                  Container(
+                                    width: 35,
+                                    height: 35,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Colors.blue,
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.coffee, color: 
+                                    Colors.white, size: 18,
+                                    ),
+                                ],
+                              ),
+                              SizedBox(width: 12),
+                              Text("Cafe", style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: Theme.of(context).colorScheme.outline,
+                              ),
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Text("R 10", style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                              ),
+                              Text("Hoje", style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: Theme.of(context).colorScheme.outline,
+                              ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              }
             ),
           )
           ],

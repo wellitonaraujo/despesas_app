@@ -10,10 +10,10 @@ class MyAppView extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "Despesas",
       theme: ThemeData(
-       colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.deepPurple,
-          primary: Colors.deepPurple,
-          secondary: Colors.amber,
+       colorScheme: ColorScheme.light(
+          primary: Color(0xFF00B2E7),
+          secondary: Color(0xFFE064F7),
+          tertiary: Color(0xFFFF8D6C),
         ),
         useMaterial3: true,
       ),
