@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:despesas_app/data/data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,6 @@ class MainScreen extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
-          
           children: [
           Container(
             color: Colors.white,
@@ -214,7 +214,7 @@ class MainScreen extends StatelessWidget {
           const SizedBox(height: 20),
           Expanded(
             child: ListView.builder(
-              itemCount: 5,
+              itemCount: transactionsData.length,
               itemBuilder: (context, int i) {
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 16.0),
@@ -236,9 +236,9 @@ class MainScreen extends StatelessWidget {
                                   Container(
                                     width: 35,
                                     height: 35,
-                                    decoration: const BoxDecoration(
+                                    decoration: BoxDecoration(
                                       shape: BoxShape.circle,
-                                      color: Colors.blue,
+                                      color: transactionsData[i]['color'],
                                     ),
                                   ),
                                   Icon(
@@ -248,7 +248,7 @@ class MainScreen extends StatelessWidget {
                                 ],
                               ),
                               SizedBox(width: 12),
-                              Text("Cafe", style: TextStyle(
+                              Text(transactionsData[i]['name'], style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
                                 color: Theme.of(context).colorScheme.outline,
@@ -257,14 +257,15 @@ class MainScreen extends StatelessWidget {
                             ],
                           ),
                           Column(
+                           
                             children: [
-                              Text("R 10", style: TextStyle(
+                              Text(transactionsData[i]['totalBalance'], style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
                                 color: Theme.of(context).colorScheme.primary,
                               ),
                               ),
-                              Text("Hoje", style: TextStyle(
+                              Text(transactionsData[i]['date'], style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
                                 color: Theme.of(context).colorScheme.outline,
