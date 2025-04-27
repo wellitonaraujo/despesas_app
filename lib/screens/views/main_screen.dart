@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:despesas_app/data/data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -241,10 +242,12 @@ class MainScreen extends StatelessWidget {
                                       color: transactionsData[i]['color'],
                                     ),
                                   ),
-                                  Icon(
-                                    Icons.coffee, color: 
-                                    Colors.white, size: 18,
-                                    ),
+                                 FaIcon(
+                                  transactionsData[i]['icon'], // agora cria o FaIcon na hora
+                                  color: Colors.white,
+                                  size: 12,
+                                ),
+
                                 ],
                               ),
                               SizedBox(width: 12),
